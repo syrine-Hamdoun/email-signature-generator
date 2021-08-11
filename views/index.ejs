@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viexport" content="widh=device-widh,initial-scale=1.0">
+<title>signature</title>
+<style>
+ 
+
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body {
+   background-color: #f5e5e5;
+}
+
+h1 {
+  text-align: center;
+  color: #009472;
+  font-family: Corbel Arial;
+  margin-top: 40px; 
+}
+
+fieldset
+{
+  background-color: transparent;
+  max-width:300px;
+  padding:16px;	
+  border: dotted solid;
+  border-color: #009472;
+  border-width: 1px;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;	
+    border-radius:8px;	
+   margin: 0 auto;
+
+}
+
+label {
+  width: 150px;
+  text-align: right;
+}
+
+input {
+   margin: 2px;
+}
+
+h1, label, legend {
+   font-family: Raleway;
+
+}
+
+</style>
+</head>
+<body>
+      
+
+   <h1 class="title">Email signature generator</h1>
+   </br>
+   <fieldset>
+		<legend>Your Information</legend>
+      <label for ="nm">Name </label>
+			<input type = "text" name = "nm" id = "nm" required placeholder="Your pretty name goes here"><br/>
+      <label for ="pos">work </label>
+			<input type = "text" name = "pos" id = "pos" required placeholder="What you do"><br/>
+		<label for="tel">Info 1 </label>
+         <input type="text" name="tl" id = "tl" required placeholder="Tel: (+xx) xxx xxx xxx"> <br>
+		<label for="mobile">Info 2 </label>
+         <input type="text" name="mb" id = "mb" required placeholder="Mobile: (+xx) xxx xxx xxx"> <br>
+	</fieldset> 
+   </br></br>
+     <button onclick="reviewFunction()">Preview</button>
+    
+</br>
+</br>
+
+  <div id="htmlcode"><font style="font-family:'Century Gothic', Arial, sans-serif; font-size: 9pt; color:#333;line-height:0.5; text-indent: 10px;">
+      <table width="80" border="0" cellspacing="0" cellpadding="0" style="float:left;">
+         <tr>
+            <td width="50" rowspan="2" style="border-right: 1px solid #bcbcbc;">
+               <img src="C:\Users\Omar Sfaxi\Desktop\email\profile.png" width="80">
+            </td>
+      </table>
+  <p id="name" style="color: #009472; font-size:120%; font-weight:bolder; line-height: 0.5;">Your name </p>
+  <p id="position">work </p>
+  <p id="tel"> Tel: (+xxx) xx xxx xxx<p>
+  <p id="mobile">Mobile: (+xxx) xx xxx xxx</p></font>  
+ <br>
+</div>
+</br>
+<button onclick="CopyToClipboard('htmlcode')">Get my code</button>
+<a href="#" onclick="CopyToClipboard('htmlcode')">Get my code</a>
+   
+
+   
+   
+
+
+  
+  
+<script>
+      
+   function reviewFunction(){
+document.getElementById('name').innerHTML = nm.value;
+document.getElementById('position').innerHTML = pos.value;
+document.getElementById('tel').innerHTML = tl.value;
+document.getElementById('mobile').innerHTML = mb.value;
+   }
+
+   /*
+let btncopy = document.getElementById("btncopy");
+let e=document.getElementById("htmlcode");
+let h=e.innerHTML;
+ btncopy.onclick = function(){
+    
+    e.select();
+    document.execCommand("copy");
+ };
+*/ 
+ /*
+   function getFunction(){
+      let e=document.getElementById("htmlcode");
+      let content=e.innerHTML;
+       content.select();
+       
+       document.execCommand("copy");
+      alert("copied");
+   }
+   */
+   
+   
+   function getFunction(){
+		
+      CopyToClipboard("htmlcode");
+		//var e=document.getElementById("htmlcode");
+      //var content=e.innerHTML;
+      
+      //alert(content);
+      
+         
+ 		}
+
+       function CopyToClipboard(id)
+{
+var r = document.createRange();
+r.selectNode(document.getElementById(id));
+window.getSelection().removeAllRanges();
+window.getSelection().addRange(r);
+document.execCommand('copy');
+window.getSelection().removeAllRanges();
+}
+       function CopyToClipboard(containerid) {
+  if (document.selection) {
+    var range = document.body.createTextRange();
+    range.moveToElementText(document.getElementById(containerid));
+    range.select().createTextRange();
+    document.execCommand("copy");
+  } else if (window.getSelection) {
+    var range = document.createRange();
+    range.selectNode(document.getElementById(containerid));
+    window.getSelection().addRange(range);
+    document.execCommand("copy");
+    alert("Text has been copied, now paste in the text-area")
+  }
+}
+
+
+</script>
+
+</body>
+</html>
