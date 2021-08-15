@@ -65,7 +65,11 @@ h1, label, legend {
          <input type="text" name="tl" id = "tl" required placeholder="Tel: (+xx) xxx xxx xxx"> <br>
 		<label for="mobile">Info 2 </label>
          <input type="text" name="mb" id = "mb" required placeholder="Mobile: (+xx) xxx xxx xxx"> <br>
+      <div>
+            <label>Profile Photo:</label>
             
+            <input type="file" name="" id="fileId" onchange="imageUploaded()">
+      </div>      
 	</fieldset> 
    </br></br>
      <button onclick="reviewFunction()">Try it</button>
@@ -77,7 +81,7 @@ h1, label, legend {
       <table width="80" border="0" cellspacing="0" cellpadding="0" style="float:left;">
          <tr>
             <td width="50" rowspan="2" style="border-right: 1px solid #bcbcbc;">
-               <img src="C:\Users\Omar Sfaxi\Desktop\email\profile.png" width="80">
+               <img src="" id="pic" width="80">
             </td>
       </table>
   <p id="name" style="color: #009472; font-size:120%; font-weight:bolder; line-height: 0.5;">Your name </p>
@@ -92,28 +96,72 @@ h1, label, legend {
 
 <button onclick="getFunction()">Get my code</button>
 <button id="myBtn">go</button>
-<textarea id="demo">omar</textarea>
+<textarea id="demo" >omar</textarea>
 <button onclick="myFunction()">copy</button>
-
-
+<textarea id="picture" ></textarea>
+<button onclick="downloadcode()">download</button>
 <script>
-      
+     
    function reviewFunction(){
 document.getElementById('name').innerHTML = nm.value;
 document.getElementById('position').innerHTML = pos.value;
 document.getElementById('tel').innerHTML = tl.value;
 document.getElementById('mobile').innerHTML = mb.value;
    }
+ 
+function downloadcode(){
+   
+const  data =document.getElementById("demo").value ;
+
+
+};
+
+
+
+
+   let base64String = "";
+  
+function imageUploaded() {
+    var file = document.querySelector(
+        'input[type=file]')['files'][0];
+  
+    var reader = new FileReader();
+    console.log("next");
+      
+    reader.onload = function () {
+        base64String = reader.result
+        imageBase64Stringsep = base64String;
+  
+        // alert(imageBase64Stringsep);
+        console.log(base64String);
+        document.getElementById("pic").src= base64String ;
+    }
+    reader.readAsDataURL(file);
+
+  
+  
+   }
+
+ /* 
+function displayString() {
+    console.log("Base64String about to be printed");
+   // alert(base64String);
+}
+*/ 
+
+
+Output:
    
    document.getElementById("myBtn").addEventListener("click", function() {
       var e=document.getElementById("htmlcode");
       var content=e.innerHTML;
       document.getElementById("demo").innerHTML = content;
+
+    
       
    });
    
-   
-   function myFunction() {
+    function myFunction() {
   var copyText = document.getElementById("demo");
   copyText.select();
   document.execCommand("copy");
