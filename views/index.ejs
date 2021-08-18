@@ -47,7 +47,47 @@ h1, label, legend {
    font-family: Raleway;
 
 }
+img {
+  border-radius: 50%;
+}
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 140px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
 </style>
 </head>
 <body>
@@ -57,14 +97,14 @@ h1, label, legend {
    </br>
    <fieldset>
 		<legend>Your Information</legend>
-      <label for ="nm">Name </label>
+      <label for ="nm">Name:</label>
 			<input type = "text" name = "nm" id = "nm" required placeholder="Your pretty name goes here"><br/>
-      <label for ="pos">work </label>
+      <label for ="pos">work     :   </label>
 			<input type = "text" name = "pos" id = "pos" required placeholder="What you do"><br/>
-		<label for="tel">Info 1 </label>
-         <input type="text" name="tl" id = "tl" required placeholder="Tel: (+xx) xxx xxx xxx"> <br>
-		<label for="mobile">Info 2 </label>
-         <input type="text" name="mb" id = "mb" required placeholder="Mobile: (+xx) xxx xxx xxx"> <br>
+		<label for="tel">GSM :</label>
+         <input type="tel" name="tl" id = "tl" pattern="[0-9]{8}" required placeholder="Tel: (+xxx) xx xxx xxx"> <br>
+   	<label for="mobile">location </label>
+         <input type="text" name="mb" id = "mb" required placeholder=" location"> <br>
       <div>
             <label>Profile Photo:</label>
             
@@ -81,25 +121,31 @@ h1, label, legend {
       <table width="80" border="0" cellspacing="0" cellpadding="0" style="float:left;">
          <tr>
             <td width="50" rowspan="2" style="border-right: 1px solid #bcbcbc;">
-               <img src="" id="pic" width="80">
+               <img src="" id="pic" width="80" height="80">
             </td>
       </table>
   <p id="name" style="color: #009472; font-size:120%; font-weight:bolder; line-height: 0.5;">Your name </p>
   <p id="position">work </p>
-  <p id="tel"> Tel: (+xxx) xx xxx xxx<p>
-  <p id="mobile">Mobile: (+xxx) xx xxx xxx</p></font>  
+  <p id="tel"> GSM: (+xxx) xx xxx xxx<p>
+  <p id="mobile">location</p></font>  
  <br>
 </div>
 </br>
 
 
 
-<button onclick="getFunction()">Get my code</button>
-<button id="myBtn">go</button>
-<textarea id="demo" >omar</textarea>
-<button onclick="myFunction()">copy</button>
-<textarea id="picture" ></textarea>
-<button onclick="downloadcode()">download</button>
+
+<button id="myBtn">go</button></br>
+<textarea id="demo" placeholder="your code will be here " ></textarea>
+
+
+<div class="tooltip">
+<button onclick="myFunction()" onmouseout="outFunc()"><span class="tooltiptext" id="myTooltip">Copy the code</span>copy</button>
+
+</div>
+
+
+
 <script>
      
    function reviewFunction(){
@@ -107,16 +153,8 @@ document.getElementById('name').innerHTML = nm.value;
 document.getElementById('position').innerHTML = pos.value;
 document.getElementById('tel').innerHTML = tl.value;
 document.getElementById('mobile').innerHTML = mb.value;
-   }
- 
-function downloadcode(){
    
-const  data =document.getElementById("demo").value ;
-
-
-};
-
-
+   }
 
 
    let base64String = "";
@@ -137,17 +175,9 @@ function imageUploaded() {
         document.getElementById("pic").src= base64String ;
     }
     reader.readAsDataURL(file);
-
-  
-  
    }
+   
 
- /* 
-function displayString() {
-    console.log("Base64String about to be printed");
-   // alert(base64String);
-}
-*/ 
 
 
 Output:
@@ -165,17 +195,14 @@ Output:
   var copyText = document.getElementById("demo");
   copyText.select();
   document.execCommand("copy");
+
+  var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = "Copied "
    };
-  
-   
-   
-   /*
-      function getFunction(){
-         var e=document.getElementById("htmlcode");
-         var content=e.innerHTML;
-         alert(content); 
-          }
- */ 
+   function outFunc() {
+  var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = "Copy the code";
+}
 
 </script>
 
